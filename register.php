@@ -50,7 +50,7 @@
             <p>
                 <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                 <label for="firstname">First Name</label>
-                <input id="firstname" name="firstname" type="text" placeholder="e.g. Aubrey" value="<?php getInputValue('firstname') ?>" required>
+                <input id="firstname" name="firstName" type="text" placeholder="e.g. Aubrey" value="<?php getInputValue('firstname') ?>" required>
             </p>
             <p>
                 <?php echo $account->getError(Constants::$lastNameCharacters); ?>
