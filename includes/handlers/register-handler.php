@@ -2,13 +2,13 @@
 
     function sanitizeFormUsername($inputText){
         $inputText = strip_tags($inputText);
-        $inputText = str_repalce(" ", "", $inputText);
+        $inputText = str_replace(" ", "", $inputText);
         return $inputText;
     }
 
     function sanitizeFormString($inputText){
         $inputText = strip_tags($inputText);
-        $inputText = str_repalce(" ", "", $inputText);
+        $inputText = str_replace(" ", "", $inputText);
         $inputText = ucfirst(strtolower($inputText));
         return $inputText;
     }
@@ -31,8 +31,8 @@
         // $firstName = strip_tags($firstName);
         // $firstName = str_repalce(" ", "", $firstName);
         // $firstName = ucfirst(strtolower($firstName));
-        $username = sanitizeFormUsername($_POST['username']);
 
+        $username = sanitizeFormUsername($_POST['username']);
         $firstName = sanitizeFormString($_POST['firstName']);
         $lastName = sanitizeFormString($_POST['lastName']);
         $email = sanitizeFormString($_POST['email']);
@@ -41,8 +41,11 @@
         $password = sanitizeFormString($_POST['password']);
         $password2 = sanitizeFormString($_POST['password2']);
 
-        $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2);
+        $wasSuccessful = $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2);
 
+        if($wasSuccessful == true) {
+            header("Location: index.php");
+        }
     }
 
 ?>
