@@ -24,8 +24,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome to Slotify</title>
     <link rel="stylesheet" type="text/css" href="assets/css/register.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="assets/js/register.js"></script>
+
+
 </head>
 <body>
+
+    <?php
+        if(isset($_POST['registerButton'])) {
+            echo ' <script>
+                $(document).ready(function(){
+                    $("#loginForm").hide();
+                    $("#registerForm").show();
+                    })
+                </script>';
+        } else {
+            echo ' <script>
+                $(document).ready(function(){
+                    $("#loginForm").show();
+                    $("#registerForm").hide();
+                    })
+                </script>';
+        }
+    ?>
+   
+
     <div id="background">
 
         <div id="loginContainer">
@@ -36,17 +61,17 @@
                     <p>
                     <?php echo $account->getError(Constants::$loginFailed); ?>
                         <label for="loginUsername">Username</label>
-                        <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. drizzyDrake" required>
+                        <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. drizzyDrake" value="<?php getInputValue('loginUsername') ?>" required>
                     </p>
                     <p>
                         <label for="loginPassword">Password</label>
-                        <input id="loginPassword" name="loginPassword" type="password" placeholder="yourpassword" required>
+                        <input id="loginPassword" name="loginPassword" type="password" placeholder="yourpassword" value="<?php getInputValue('loginPassword') ?>" required>
                     </p>
 
                     <button type="submit" name="loginButton">Log In</button>
 
                     <div class="hasAccountText">
-                        <span id="hideLogin">Dont' have an account yet? Signup down heerrrreee:</span>
+                        <span id="hideLogin">No account yet? Signup by clicking me you foo</span>
                     </div>
 
                 </form>
@@ -96,11 +121,24 @@
                     <button type="submit" name="registerButton">Sign Up</button>
 
                     <div class="hasAccountText">
-                        <span id="hideRegister">Got an account? login heerrrreee:</span>
+                        <span id="hideRegister">Got an account? login heerrrreee!</span>
                     </div>
 
                 </form>
             </div>
+
+            <div id="loginText">
+                <h1>Get great music, right now</h1>
+                <h2>Listen to some songs for free</h2>
+
+                <ul>
+                    <li>Discover dope choons</li>
+                    <li>Create playlists</li>
+                    <li>Follow artists to keep up to date</li>
+                </ul>
+
+            </div>
+
         </div>
     </div>
 </body>
